@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends Activity {
 
     String hora="",fecha="",tipo;
@@ -34,16 +37,19 @@ public class MainActivity extends Activity {
         tpd.show();
     }
     public void fecha(View v){
+        Date dt=new Date();
+        Calendar cal=Calendar.getInstance();
+        cal.setTime(dt);
         DatePickerDialog dpd=new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                         fecha=i2+"/"+(i1+1)+"/"+i;
                     }
-                },
-                2017,
-                4,
-                30);
+                },cal.get(Calendar.YEAR)
+                ,
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH));
         dpd.show();
     }
     public void citar(View v){
